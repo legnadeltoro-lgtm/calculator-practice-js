@@ -1,4 +1,4 @@
-# Calculator
+# Calculator (calculator-practice-js)
 
 A simple calculator built with **HTML**, **CSS**, and **JavaScript**.
 This project is part of my journey learning web development from scratch.

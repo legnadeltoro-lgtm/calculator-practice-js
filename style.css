@@ -1,0 +1,229 @@
+/* ==========================================
+   ESTILOS GENERALES — reset y fondo
+   ========================================== */
+
+/* Quita los márgenes y paddings por defecto que pone el navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo de la página con un degradado de azules pastel */
+body {
+  background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+  min-height: 100vh;                /* ocupa toda la pantalla */
+  display: flex;                    /* activa flexbox */
+  justify-content: center;          /* centra horizontalmente */
+  align-items: center;              /* centra verticalmente */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL — la calculadora
+   ========================================== */
+
+.calculator {
+  background-color: #FFFFFF;
+  border-radius: 24px;              /* bordes redondeados */
+  padding: 25px;                    /* espacio interno */
+  box-shadow: 0 12px 40px rgba(66, 133, 244, 0.2); /* sombra azul suave */
+  display: grid;                    /* activa CSS Grid */
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas del mismo tamaño */
+  gap: 12px;                        /* espacio entre botones */
+  max-width: 380px;                 /* ancho máximo */
+  width: 100%;                      /* se adapta en pantallas chicas */
+}
+
+/* ==========================================
+   DISPLAY — la pantalla donde se ven los números
+   ========================================== */
+
+.display {
+  grid-column: 1 / -1;              /* ocupa todas las columnas (de la 1 a la última) */
+  background-color: #F5F9FF;        /* azul muy clarito */
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-align: right;                /* texto alineado a la derecha */
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;           /* apila los elementos uno arriba del otro */
+  justify-content: flex-end;        /* los números quedan al fondo */
+  word-break: break-all;            /* si el número es muy largo, se parte */
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04); /* sombra interna sútil */
+}
+
+/* Número pequeño de arriba — el operando anterior */
+.previous-operand {
+  font-size: 1rem;
+  color: #6B93C0;                   /* azul grisáceo */
+  min-height: 24px;
+}
+
+/* Número grande de abajo — el que se está escribiendo */
+.current-operand {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1A3A5C;                   /* azul oscuro para el texto principal */
+  line-height: 1.2;
+}
+
+/* ==========================================
+   BOTONES — todos comparten estas propiedades
+   ========================================== */
+
+button {
+  border: none;                     /* quita el borde por defecto */
+  outline: none;                    /* quita el contorno al hacer click */
+  border-radius: 50%;               /* hace los botones perfectamente redondos */
+  aspect-ratio: 1 / 1;              /* fuerza que sean cuadrados (alto = ancho) */
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;                  /* cambia el cursor a manita */
+  transition: all 0.15s ease;       /* animación suave al hacer hover/click */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A3A5C;                   /* color de texto azul oscuro */
+}
+
+/* ==========================================
+   BOTONES QUE OCUPAN 2 COLUMNAS (AC y =)
+   ========================================== */
+
+.span-two {
+  border-radius: 999px;             /* en vez de círculo, queda tipo píldora */
+  aspect-ratio: auto;               /* ya no es cuadrado forzado */
+  grid-column: span 2;              /* ocupa 2 columnas en la grilla */
+}
+
+/* ==========================================
+   BOTONES NUMERO (0-9 y .)
+   ========================================== */
+
+.number,
+.decimal {
+  background-color: #E3F2FD;        /* azul pastel clarito */
+}
+
+/* Luz al pasar el mouse por encima */
+.number:hover,
+.decimal:hover {
+  background-color: #BBDEFB;        /* más brillante / iluminado */
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.25);
+  transform: scale(1.06);           /* se agranda un poquito */
+}
+
+/* Efecto al hacer click */
+.number:active,
+.decimal:active {
+  background-color: #90CAF9;        /* azul un poco más intenso */
+  transform: scale(0.95);           /* se encoge un poquito (efecto de presionar) */
+}
+
+/* ==========================================
+   BOTONES OPERADOR (+, −, ×, ÷)
+   ========================================== */
+
+.operator {
+  background-color: #90CAF9;        /* azul pastel medio */
+  color: #0D47A1;                   /* texto azul más intenso */
+}
+
+.operator:hover {
+  background-color: #64B5F6;        /* más claro y brillante */
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.35);
+  transform: scale(1.06);
+  color: #FFFFFF;                   /* texto blanco para contrastar */
+}
+
+.operator:active {
+  background-color: #42A5F5;
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   BOTON IGUAL (=)
+   ========================================== */
+
+.equals {
+  background-color: #42A5F5;        /* azul más vibrante — es el botón principal */
+  color: #FFFFFF;                   /* texto blanco */
+  font-size: 1.8rem;                /* un poco más grande */
+}
+
+.equals:hover {
+  background-color: #1E88E5;        /* azul más intenso al pasar el mouse */
+  box-shadow: 0 4px 20px rgba(30, 136, 229, 0.45);
+  transform: scale(1.03);
+}
+
+.equals:active {
+  background-color: #1565C0;
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   BOTON CLEAR (AC) — reinicia todo
+   ========================================== */
+
+.clear {
+  background-color: #B0C4DE;        /* azul grisáceo claro (light steel blue) */
+}
+
+.clear:hover {
+  background-color: #D4E4F7;        /* más brillante */
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.2);
+  transform: scale(1.03);
+}
+
+.clear:active {
+  background-color: #8FA8C8;
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   BOTON DELETE (DEL) — borra un dígito
+   ========================================== */
+
+.delete {
+  background-color: #D4E4F7;        /* tono similar al clear pero diferente */
+}
+
+.delete:hover {
+  background-color: #E8F2FA;        /* más brillante */
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.2);
+  transform: scale(1.06);
+}
+
+.delete:active {
+  background-color: #B0C4DE;
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   RESPONSIVE — se adapta a pantallas pequeñas
+   ========================================== */
+
+@media (max-width: 400px) {
+  .calculator {
+    padding: 16px;
+    gap: 8px;
+    max-width: 100%;
+    border-radius: 16px;
+    margin: 12px;
+  }
+
+  button {
+    font-size: 1.2rem;
+  }
+
+  .current-operand {
+    font-size: 2rem;
+  }
+
+  .display {
+    padding: 14px 18px;
+    min-height: 80px;
+  }
+}
